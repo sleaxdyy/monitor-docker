@@ -1,0 +1,32 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: '<gmail address>'
+  smtp_auth_username: '<gmail address>'
+  smtp_auth_password: '<OAToken>'
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 3m
+  repeat_interval: 3h
+  receiver: "team-its"
+
+  routes:
+    - matchers:
+        - severity=~"critical|warning"
+      receiver: team-its
+  routes:
+    - matchers:
+        - team="vconnect"
+      receiver: team-vconnect
+
+receivers:
+  - name: 'team-its'
+    webhook_configs:
+      - url: 'http://171.244.139.240:9087/alert/<group telegram id>'
+        send_resolved: true
+
+  - name: 'team-vconnect'
+    webhook_configs:
+      - url: 'http://171.244.139.240:9087/alert/<group telegram id>'
+        send_resolved: true
