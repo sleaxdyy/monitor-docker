@@ -1,4 +1,7 @@
 version: '3.8'
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
 services:
   prometheus-bot:
     image: sleaxdyy/telegram-bot:latest
@@ -33,7 +36,7 @@ services:
       - GF_SMTP_SKIP_VERIFY=${SMTP_SKIP_VERIFY}
       - GF_SMTP_FROM_ADDRESS=${SMTP_FROM_ADDRESS}
       - GF_SMTP_FROM_NAME=${SMTP_FROM_NAME}
-    user: "991:987"
+    user: "0:0"
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -52,10 +55,10 @@ services:
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
-    expose:
-      - 9090
+    ports:
+      - 9090:9090
     networks:
-      - monitoring
+      - monitor-net
   alertmanager:
     image: prom/alertmanager:latest
     container_name: alertmanager
@@ -67,6 +70,11 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
+<<<<<<< HEAD
+=======
+    networks:
+      - monitor-net
+>>>>>>> 144e64c853d3fa07c728bc026356ced09b627d00
 networks:
   monitor-net:
     driver: bridge
