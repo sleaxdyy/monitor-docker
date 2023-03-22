@@ -70,11 +70,8 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
       - '--storage.path=/alertmanager'
-<<<<<<< HEAD
-=======
     networks:
       - monitor-net
->>>>>>> 144e64c853d3fa07c728bc026356ced09b627d00
 networks:
   monitor-net:
     driver: bridge
