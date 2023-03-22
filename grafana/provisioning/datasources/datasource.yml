@@ -1,11 +1,13 @@
 apiVersion: 1
-
 datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://prometheus:9090
-    basicAuth: false
+    url: http://171.244.139.240:9090
+#    basicAuth: false
+    basicAuth: true
+    basicAuthUser: admin
+    basicAuthPassword: Viettelidc@123
     isDefault: true
     editable: true
