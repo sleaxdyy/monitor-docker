@@ -15,10 +15,10 @@ route:
     - matchers:
         - severity=~"critical|warning"
       receiver: team-its
-  routes:
-    - matchers:
-        - team="vconnect"
-      receiver: team-vconnect
+      routes:
+        - matchers:
+            - team="vconnect"
+          receiver: team-vconnect
 
 receivers:
   - name: 'team-its'
