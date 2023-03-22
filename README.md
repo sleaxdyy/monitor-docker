@@ -32,6 +32,9 @@ SMTP_FROM_NAME=Grafana
 id -u
 ```
 - Thay ID User vào `User` trong file `docker-compose.yml`
+```
+user: "0:0"
+```
 ## prometheus
 - Chỉnh sửa rules cho alert trong `rules.yml`
 - Chỉnh sửa cấu hình cho jobs trong `prometheus.yml`
