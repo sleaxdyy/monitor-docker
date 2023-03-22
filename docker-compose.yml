@@ -65,8 +65,8 @@ services:
       - ./alertmanager/:/etc/alertmanager/
     restart: always
     command:
-      - '-config.file=/etc/alertmanager/alertmanager.yml'
-      - '-storage.path=/alertmanager'
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
 networks:
   monitor-net:
     driver: bridge
